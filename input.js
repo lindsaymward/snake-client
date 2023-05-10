@@ -28,6 +28,12 @@ const handleUserInput = function (data) {
   if (data === 'd') {
     connection.write("Move: right");
   }
+  if (data === 'm') {
+    connection.write("Say: Let's go pod!");
+  }
+  if (data === 'n') {
+    connection.write("Say: Watch this");
+  }
 };
 
 module.exports = { setupInput };
