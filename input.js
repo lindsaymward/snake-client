@@ -1,10 +1,12 @@
+const { ENCODER, MOVE_UP_KEY, MOVE_DOWN_KEY, MOVE_LEFT_KEY, MOVE_RIGHT_KEY, MESSAGES } = require('./constants');
+
 let connection;
 
 const setupInput = function (conn) {
   connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
-  stdin.setEncoding('utf8');
+  stdin.setEncoding(ENCODER);
   stdin.resume();
 
   stdin.on("data", handleUserInput);
@@ -16,23 +18,20 @@ const handleUserInput = function (data) {
   if (data === '\u0003') {
     process.exit();
   }
-  if (data === 'w') {
+  if (data === MOVE_UP_KEY) {
     connection.write("Move: up");
   }
-  if (data === 's') {
+  if (data === MOVE_DOWN_KEY) {
     connection.write("Move: down");
   }
-  if (data === 'a') {
+  if (data === MOVE_LEFT_KEY) {
     connection.write("Move: left");
   }
-  if (data === 'd') {
+  if (data === MOVE_RIGHT_KEY) {
     connection.write("Move: right");
   }
-  if (data === 'm') {
-    connection.write("Say: Let's go pod!");
-  }
-  if (data === 'n') {
-    connection.write("Say: Watch this");
+  if (MESSAGES[data]) {
+    connection.write(MESSAGES[data]);
   }
 };
 
