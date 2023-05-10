@@ -21,3 +21,9 @@ const connect = function () {
 };
 
 module.exports = { connect };
+
+// Move commands
+// "Move: up" (unless facing down)
+// "Move: down" (unless facing up)
+// "Move: left"(unless facing right)
+// "Move: right" (unless facing left)
